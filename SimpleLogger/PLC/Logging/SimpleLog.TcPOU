@@ -34,6 +34,27 @@ END_VAR]]></Declaration>
 END_FOR]]></ST>
       </Implementation>
     </Method>
+    <Method Name="LogMessageIndividual" Id="{58d79bb4-510e-468e-9fb9-fc6f354528fd}">
+      <Declaration><![CDATA[METHOD LogMessageIndividual
+VAR_INPUT
+	TimeStamp  : T_FILETIME64 := 0;
+	SourceName : T_MaxString  := '';
+	Severity   : USINT		  := 0;
+	Message	   : T_MaxString;
+END_VAR
+
+VAR
+	LogSource	: SimpleLogSource;
+	LogMessage : SimpleLogMessage;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LogSource.TimeStamp	 := TimeStamp;
+LogSource.SourceName := SourceName;
+LogMessage.Severity	 := Severity;
+LogMessage.Message	 := Message;
+THIS^.LogMessage(LogSource, LogMessage);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Subscribe" Id="{70557456-7b26-4cff-8cea-3f31ae095291}">
       <Declaration><![CDATA[METHOD Subscribe
 VAR_INPUT

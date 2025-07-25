@@ -3,13 +3,12 @@
   <POU Name="MAIN" Id="{ca8aab67-3a8c-46ae-a624-30d4645d11d7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	State		: USINT;
-	
-	LocalLogger : SimpleLocalLogger;
-	Message		: SimpleLogMessage;
-	Source		: SimpleLogSource;
-	
-	LogAMessage : BOOL;
+	State			  : USINT;
+	LocalLogger		  : SimpleLocalLogger;
+	Message			  : SimpleLogMessage;
+	Source			  : SimpleLogSource;
+	LogAMessage		  : BOOL;
+	IndividualMessage : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[CASE State OF
@@ -23,6 +22,11 @@ END_CASE
 IF LogAMessage THEN
 	LogAMessage := FALSE;
 	GVL.Logger.LogMessage(Source, Message);
+END_IF
+
+IF IndividualMessage THEN
+	IndividualMessage := FALSE;
+	GVL.Logger.LogMessageIndividual(Message := 'My Individual Message');
 END_IF]]></ST>
     </Implementation>
   </POU>
