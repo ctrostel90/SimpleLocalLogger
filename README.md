@@ -10,3 +10,4 @@ THe Global Singleton of a Publisher/Subscribe mechanism is not required to imple
 - Users can expand by augmenting the properties inside the Source and Message interfaces/structures
 - Users could expand by implementing custom parsing of the Source/Message structures
 - Users could expand by adding arguments to the LogMessage() method
+- Users could modify to not use Classes/Objects and instead structures for the Source/Message inputs (or change to any other types as desired)
