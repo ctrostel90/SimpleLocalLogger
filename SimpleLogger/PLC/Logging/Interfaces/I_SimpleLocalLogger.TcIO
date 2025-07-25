@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_SimpleLocalLogger" Id="{0ba94742-9a76-4035-b0bc-45adc0cf5135}">
+    <Declaration><![CDATA[INTERFACE I_SimpleLocalLogger EXTENDS I_Base, I_SimpleLogger
+]]></Declaration>
+    <Property Name="Messages" Id="{e1b59ce6-9cde-4ab6-8e6d-553c68109225}">
+      <Declaration><![CDATA[PROPERTY Messages : REFERENCE TO ARRAY[0..Parameters.MaxMessages - 1] OF T_MaxString]]></Declaration>
+      <Get Name="Get" Id="{e8f23c96-c4ba-445e-9e78-9b126aec6e9f}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

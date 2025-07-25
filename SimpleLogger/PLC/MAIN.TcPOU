@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{ca8aab67-3a8c-46ae-a624-30d4645d11d7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	State		: USINT;
+	
+	LocalLogger : SimpleLocalLogger;
+	Message		: SimpleLogMessage;
+	Source		: SimpleLogSource;
+	
+	LogAMessage : BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE State OF
+	0:
+		GVL.Logger.Subscribe(LocalLogger);
+		State := 10;
+
+	10:
+END_CASE
+
+IF LogAMessage THEN
+	LogAMessage := FALSE;
+	GVL.Logger.LogMessage(Source, Message);
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

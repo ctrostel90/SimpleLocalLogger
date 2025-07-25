@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="SimpleLocalLogger" Id="{16601270-5b17-4fbc-ba13-13dac222b1f7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimpleLocalLogger IMPLEMENTS I_SimpleLocalLogger
+VAR
+	{attribute 'hide'}
+	_Messages	 : ARRAY[0..Parameters.MaxMessages - 1] OF T_MaxString;
+	{attribute 'hide'}
+	CurrentIndex : USINT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="LogMessage" Id="{a01d6dd3-6873-442e-b705-ce03df83f57a}">
+      <Declaration><![CDATA[METHOD LogMessage
+VAR_INPUT
+	Source	: I_SimpleLogSource;
+	Message : I_SimpleLogMessage;
+END_VAR
+
+VAR
+	TimeStamp  : T_FILETIME64;
+	TimeString : T_MaxString;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Source.TimeStamp = 0 THEN
+	TimeStamp  := F_GetSystemTime();
+	TimeString := SYSTEMTIME_TO_STRING(FILETIME64_TO_SYSTEMTIME(TimeStamp));
+END_IF
+
+_Messages[CurrentIndex] := CONCAT(TimeString, CONCAT(' ', CONCAT(Source.SourceName, CONCAT(': ', Message.Message))));
+CurrentIndex			:= CurrentIndex + 1;
+IF CurrentIndex = Parameters.MaxMessages THEN
+	CurrentIndex := 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Messages" Id="{52d74c1a-5805-44c8-aaf3-5c1add693e4f}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY Messages : REFERENCE TO ARRAY[0..Parameters.MaxMessages - 1] OF T_MaxString]]></Declaration>
+      <Get Name="Get" Id="{8e2c6139-0287-459b-ab7f-a7ee49dc15ab}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Messages REF= _Messages;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

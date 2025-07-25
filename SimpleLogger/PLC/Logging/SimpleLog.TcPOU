@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="SimpleLog" Id="{11684a1d-1b77-4759-9631-033c7b7a01a2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimpleLog
+VAR_GENERIC CONSTANT
+	NumberOfSubscribers : USINT := 5;
+END_VAR
+ 
+IMPLEMENTS I_SimpleLogPublisher, I_SimpleLogger
+VAR
+	SubscriberCount : USINT;
+	_Subscribers : ARRAY[0..NumberOfSubscribers - 1] OF I_SimpleLogger;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="LogMessage" Id="{fdc2ce0c-7bf5-4892-93d2-14e8db646fe8}">
+      <Declaration><![CDATA[METHOD LogMessage
+VAR_INPUT
+	Source	: I_SimpleLogSource;
+	Message : I_SimpleLogMessage;
+END_VAR
+VAR
+	i : UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO NumberOfSubscribers - 1 DO
+	IF _Subscribers[i] = 0 THEN
+		CONTINUE;
+	END_IF
+
+	_Subscribers[i].LogMessage(Source, Message);
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Subscribe" Id="{70557456-7b26-4cff-8cea-3f31ae095291}">
+      <Declaration><![CDATA[METHOD Subscribe
+VAR_INPUT
+	Logger : I_SimpleLogger;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF SubscriberCount >= NumberOfSubscribers THEN
+	RETURN;
+END_IF
+
+_Subscribers[SubscriberCount] := Logger;
+SubscriberCount				  := SubscriberCount + 1;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

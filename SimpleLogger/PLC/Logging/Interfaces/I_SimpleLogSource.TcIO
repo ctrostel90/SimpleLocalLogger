@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_SimpleLogSource" Id="{a5a2a655-616d-42a7-94d2-e761e8fdbc3b}">
+    <Declaration><![CDATA[INTERFACE I_SimpleLogSource EXTENDS I_Base
+]]></Declaration>
+    <Property Name="SourceName" Id="{dabf4b24-2b1e-4f8d-a1be-713080e33fc5}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY SourceName : T_MaxString]]></Declaration>
+      <Get Name="Get" Id="{9a84ccc9-66ef-46b6-8b18-728c37609ee9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="TimeStamp" Id="{24d5e1ad-9cf4-44b2-a847-8639250614f6}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY TimeStamp : T_FILETIME64]]></Declaration>
+      <Get Name="Get" Id="{427482e7-e897-4de6-b03e-8b2b7a04d550}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

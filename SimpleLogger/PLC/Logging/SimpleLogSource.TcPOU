@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="SimpleLogSource" Id="{afe55241-3057-4122-abfb-57743fcfe2a9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimpleLogSource IMPLEMENTS I_SimpleLogSource
+VAR
+	{attribute 'hide'}
+	_SourceName : T_MaxString;
+	{attribute 'hide'}
+	_TimeStamp : T_FILETIME64;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="SourceName" Id="{4a6a0d2d-b69f-47ba-824a-2c2cb7762739}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY SourceName : T_MaxString]]></Declaration>
+      <Get Name="Get" Id="{7493dc3e-787e-4601-a8b3-94a3e75fae51}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SourceName := _SourceName;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{57a20b66-ae7a-4e9a-b3c7-c981f732ab73}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_SourceName := SourceName;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="TimeStamp" Id="{0aa61d6c-284a-45c2-ad9c-1aa79e20be48}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'call'}
+PROPERTY TimeStamp : T_FILETIME64
+]]></Declaration>
+      <Get Name="Get" Id="{d8c5ad5e-95c2-4d7e-9edd-42f1f910325d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TimeStamp := _TimeStamp;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{9959a51c-4a38-4905-830c-3ead4d403625}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_TimeStamp := TimeStamp;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

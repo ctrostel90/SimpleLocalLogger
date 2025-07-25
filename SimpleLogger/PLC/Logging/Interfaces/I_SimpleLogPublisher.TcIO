@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_SimpleLogPublisher" Id="{637a1c51-6794-4701-a99d-e58d0530dad3}">
+    <Declaration><![CDATA[INTERFACE I_SimpleLogPublisher EXTENDS I_Base
+]]></Declaration>
+    <Method Name="Subscribe" Id="{204c1bed-d99d-4512-a1d0-63490e307fb1}">
+      <Declaration><![CDATA[METHOD Subscribe
+VAR_INPUT
+	Logger : I_SimpleLogger;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

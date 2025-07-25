@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_Base" Id="{8863f417-84d9-475b-8ed5-cfaf8d0a02ca}">
+    <Declaration><![CDATA[INTERFACE I_Base EXTENDS __SYSTEM.IQUERYINTERFACE
+]]></Declaration>
+  </Itf>
+</TcPlcObject>
