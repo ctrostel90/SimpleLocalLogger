@@ -14,8 +14,9 @@ END_VAR]]></Declaration>
     <Method Name="LogMessage" Id="{a01d6dd3-6873-442e-b705-ce03df83f57a}">
       <Declaration><![CDATA[METHOD LogMessage
 VAR_INPUT
-	Source	: I_SimpleLogSource;
-	Message : I_SimpleLogMessage;
+	Source	 : I_SimpleLogSource;
+	Message	 : I_SimpleLogMessage;
+	Argument : I_SimpleLogArgument := 0;
 END_VAR
 
 VAR
@@ -29,7 +30,11 @@ END_VAR]]></Declaration>
 END_IF
 
 _Messages[CurrentIndex] := CONCAT(TimeString, CONCAT(' ', CONCAT(Source.SourceName, CONCAT(': ', Message.Message))));
-CurrentIndex			:= CurrentIndex + 1;
+IF Argument <> 0 THEN
+	_Messages[CurrentIndex] := CONCAT(_Messages[CurrentIndex], CONCAT(' : ', Argument.ToString()));
+END_IF
+
+CurrentIndex := CurrentIndex + 1;
 IF CurrentIndex = Parameters.MaxMessages THEN
 	CurrentIndex := 0;
 END_IF]]></ST>

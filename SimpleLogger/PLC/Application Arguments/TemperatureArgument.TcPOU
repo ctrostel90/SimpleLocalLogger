@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="TemperatureArgument" Id="{b3a135e7-6ead-4b8c-99f7-8a4ced55e20a}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'hide_all_locals'}
+FUNCTION_BLOCK TemperatureArgument IMPLEMENTS I_SimpleLogArgument
+VAR
+	_SetPoint : LREAL;
+	_Actual	  : LREAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="ActualTemperature" Id="{559f96be-b291-4b99-9c53-b1e995b43457}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY ActualTemperature : LREAL]]></Declaration>
+      <Get Name="Get" Id="{939a2349-97de-4f35-a2f2-e341a10edbf3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualTemperature := _Actual;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ff7da045-ab2a-4144-96ac-6882f872fb27}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Actual := ActualTemperature;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="SetPoint" Id="{5fbd6915-084d-402c-893c-77076ef0a69c}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY SetPoint : LREAL]]></Declaration>
+      <Get Name="Get" Id="{38d870af-c045-4f70-b98d-43f9efed54b0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[SetPoint := _SetPoint;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ec1d1361-9581-4566-a382-a56aeaffbaa1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_SetPoint := SetPoint;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="ToString" Id="{a6d0c48e-0953-4c20-af52-a513215bcbc1}">
+      <Declaration><![CDATA[METHOD ToString : T_MaxString
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ToString := Concat('Set Temperature: ', CONCAT(TO_STRING(_SetPoint), CONCAT(' , Actual Temp: ', TO_STRING(_Actual))));]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

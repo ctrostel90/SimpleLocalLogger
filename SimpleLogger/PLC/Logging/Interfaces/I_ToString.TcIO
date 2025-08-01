@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_ToString" Id="{0c57047e-fe76-4078-a8ef-709bfe3aa1b6}">
+    <Declaration><![CDATA[INTERFACE I_ToString EXTENDS I_Base
+]]></Declaration>
+    <Method Name="ToString" Id="{24019f64-abfe-40cc-9e5d-fe93e3ac8762}">
+      <Declaration><![CDATA[METHOD ToString : T_MaxString
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

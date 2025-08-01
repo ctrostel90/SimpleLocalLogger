@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_SimpleLogArgument" Id="{6728e269-28d4-4a66-819c-dae3f5d4d360}">
+    <Declaration><![CDATA[INTERFACE I_SimpleLogArgument EXTENDS I_Base,I_ToString
+]]></Declaration>
+  </Itf>
+</TcPlcObject>

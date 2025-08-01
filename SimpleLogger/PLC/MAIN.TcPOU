@@ -3,12 +3,15 @@
   <POU Name="MAIN" Id="{ca8aab67-3a8c-46ae-a624-30d4645d11d7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	State			  : USINT;
-	LocalLogger		  : SimpleLocalLogger;
-	Message			  : SimpleLogMessage;
-	Source			  : SimpleLogSource;
-	LogAMessage		  : BOOL;
-	IndividualMessage : BOOL;
+	State				: USINT;
+	LocalLogger			: SimpleLocalLogger;
+	Message				: SimpleLogMessage;
+	Source				: SimpleLogSource;
+	LogAMessage			: BOOL;
+	IndividualMessage	: BOOL;
+	ArgumentExample		: BOOL;
+	TemperatureArgument : TemperatureArgument;
+	AxisArgument		: AxisArgument;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[CASE State OF
@@ -27,6 +30,20 @@ END_IF
 IF IndividualMessage THEN
 	IndividualMessage := FALSE;
 	GVL.Logger.LogMessageIndividual(Message := 'My Individual Message');
+END_IF
+
+IF ArgumentExample THEN
+	ArgumentExample						  := FALSE;
+	TemperatureArgument.ActualTemperature := 50.1;
+	TemperatureArgument.SetPoint		  := 50.2;
+	Message.Message						  := 'Actual within tolerance.';
+	GVL.Logger.LogMessage(Source, Message, TemperatureArgument);
+	AxisArgument.Position	  := 123.5;
+	AxisArgument.Velocity	  := 300;
+	AxisArgument.Acceleration := -100;
+	AxisArgument.Deceleration := 100;
+	Message.Message			  := 'Acceleration outside of limits.';
+	GVL.Logger.LogMessage(Source, Message, AxisArgument);
 END_IF]]></ST>
     </Implementation>
   </POU>

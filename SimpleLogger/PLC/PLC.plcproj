@@ -18,6 +18,12 @@
     <LibraryReferences>{81236da6-f15e-48cc-91c5-b70d3d27f9cd}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Application Arguments\AxisArgument.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application Arguments\TemperatureArgument.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -26,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logging\Interfaces\I_SimpleLocalLogger.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Interfaces\I_SimpleLogArgument.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logging\Interfaces\I_SimpleLogger.TcIO">
@@ -38,6 +47,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logging\Interfaces\I_SimpleLogSource.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Interfaces\I_ToString.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logging\SimpleLog.TcPOU">
@@ -64,9 +76,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="Logging\Interfaces" />
+    <Folder Include="Application Arguments" />
     <Folder Include="VISUs" />
     <Folder Include="Logging" />
   </ItemGroup>

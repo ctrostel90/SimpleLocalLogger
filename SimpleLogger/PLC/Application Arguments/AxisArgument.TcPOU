@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="AxisArgument" Id="{59d4e583-1bb5-41b6-91d2-40b56044f241}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'hide_all_locals'}
+FUNCTION_BLOCK AxisArgument IMPLEMENTS I_SimpleLogArgument
+VAR
+	_Position	  : LREAL;
+	_Velocity	  : LREAL;
+	_Acceleration : LREAL;
+	_Deceleration : LREAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Acceleration" Id="{42f7f64b-03df-45cb-8434-b60edad86ab7}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY Acceleration : LREAL]]></Declaration>
+      <Get Name="Get" Id="{0d2c396b-c595-40f3-b034-165096725989}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Acceleration := _Acceleration;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{73d85973-ca96-4023-999a-3315b5f5628b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Acceleration := Acceleration;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Deceleration" Id="{8a412c02-6d96-45ac-80c6-d795bd6e38b6}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY Deceleration : LREAL]]></Declaration>
+      <Get Name="Get" Id="{eb2fbb72-7f8b-471f-a943-7c005753b680}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Deceleration := _Deceleration;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{d737d0a1-2827-4f9a-b4cf-1c6821d67e37}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Deceleration := Deceleration;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Position" Id="{cf352002-4870-4f4d-b0d0-8cef8cfe9f3d}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY Position : LREAL]]></Declaration>
+      <Get Name="Get" Id="{f17c0774-dd57-4dc2-a716-432b72457141}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Position := _Position;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{149c0880-8586-4ec2-a7f2-cc2f8be6b27a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Position := Position;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="ToString" Id="{66a8a95d-3d02-4811-aebf-068c87ecdc64}">
+      <Declaration><![CDATA[METHOD ToString : T_MaxString
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ToString :=
+	Concat('Pos: ',
+		   CONCAT(TO_STRING(_Position), CONCAT(' , Vel: ', CONCAT(TO_STRING(_Velocity), CONCAT(' , Accel: ', CONCAT(TO_STRING(_Acceleration), CONCAT(' , Decel: ', TO_STRING(_Deceleration))))))));]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Velocity" Id="{2a35e43d-f532-4dbe-9053-28bade584898}">
+      <Declaration><![CDATA[{attribute 'monitoring':='call'}
+PROPERTY Velocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{112e5a71-f816-4414-afac-fe838b160a93}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Velocity := _Velocity;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4cab4644-0354-4135-83a4-77320f4a2910}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Velocity := Velocity;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

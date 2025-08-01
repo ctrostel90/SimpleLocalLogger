@@ -18,9 +18,11 @@ END_VAR
     <Method Name="LogMessage" Id="{fdc2ce0c-7bf5-4892-93d2-14e8db646fe8}">
       <Declaration><![CDATA[METHOD LogMessage
 VAR_INPUT
-	Source	: I_SimpleLogSource;
-	Message : I_SimpleLogMessage;
+	Source	 : I_SimpleLogSource;
+	Message	 : I_SimpleLogMessage;
+	Argument : I_SimpleLogArgument := 0;
 END_VAR
+
 VAR
 	i : UDINT;
 END_VAR]]></Declaration>
@@ -30,7 +32,7 @@ END_VAR]]></Declaration>
 		CONTINUE;
 	END_IF
 
-	_Subscribers[i].LogMessage(Source, Message);
+	_Subscribers[i].LogMessage(Source, Message, Argument);
 END_FOR]]></ST>
       </Implementation>
     </Method>

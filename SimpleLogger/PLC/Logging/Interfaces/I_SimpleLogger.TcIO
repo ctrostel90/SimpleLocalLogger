@@ -6,8 +6,9 @@
     <Method Name="LogMessage" Id="{0342aa65-e9de-4e01-8c5d-24488fff3663}">
       <Declaration><![CDATA[METHOD LogMessage
 VAR_INPUT
-	Source	: I_SimpleLogSource;
-	Message : I_SimpleLogMessage;
+	Source	  : I_SimpleLogSource;
+	Message	  : I_SimpleLogMessage;
+	Argument : I_SimpleLogArgument := 0;
 END_VAR]]></Declaration>
     </Method>
   </Itf>
